@@ -6,7 +6,8 @@ class BlogPostsController < ApplicationController
  
 
   def index
-   @blog_posts = user_signed_in? ? BlogPost.all.sorted : BlogPost.published.sorted
+   @blog_posts = user_signed_in? ? BlogPost.sorted : BlogPost.published.sorted
+   @pagy, @blog_posts = pagy(@blog_posts)
   end
 
   def show
